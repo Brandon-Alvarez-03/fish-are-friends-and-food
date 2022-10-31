@@ -22,33 +22,47 @@ function FishCard() {
   }, []);
   console.log(fishData);
 
-  // useEffect(() => {
-  //   fetch("https://whats-that-fish.up.railway.app/fishes/pics")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setFishData(res.data);
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
+
+  
+  let scrollUp = () => {
+    document.querySelectorAll(".fishCard").style.transform =
+      "translateY(-1000px)";
+  };
+
+  let scrollDown = () => {
+    document.querySelectorAll(".fishCard").style.transform =
+      "translateY(1000px)";
+  };
 
   if (!loading) {
     return (
-      <div>
+      <>
         {fishData.map((fish, i) => {
           return (
             <div className="fishCard" key={i}>
               <img
                 src={fish?.imgUrl}
                 alt={fish.speciesName}
-                width="150"
-                height="100"
+                width="280"
+                height="180"
               />
               <div className="fishCard-name">{fish.speciesName}</div>
+              <div>{fish.altName}</div>
+              <div>{fish.color}</div>
+              <div>{fish.taste}</div>
+              <div>{fish.calories}</div>
+              <div>{fish.protein}</div>
+              <div>{fish.totalFat}</div>
             </div>
           );
         })}
-      </div>
+        <button className="upBtn" onClick={scrollUp}>
+          U
+        </button>
+        <button className="downBtn" onClick={scrollDown}>
+          D
+        </button>
+      </>
     );
   }
 }
