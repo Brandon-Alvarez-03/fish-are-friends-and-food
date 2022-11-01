@@ -22,46 +22,26 @@ function FishCard() {
   }, []);
   console.log(fishData);
 
-
-  
-  let scrollUp = () => {
-    document.querySelectorAll(".fishCard").style.transform =
-      "translateY(-1000px)";
-  };
-
-  let scrollDown = () => {
-    document.querySelectorAll(".fishCard").style.transform =
-      "translateY(1000px)";
-  };
-
   if (!loading) {
     return (
       <>
-        {fishData.map((fish, i) => {
-          return (
-            <div className="fishCard" key={i}>
-              <img
-                src={fish?.imgUrl}
-                alt={fish.speciesName}
-                width="280"
-                height="180"
-              />
-              <div className="fishCard-name">{fish.speciesName}</div>
-              <div>{fish.altName}</div>
-              <div>{fish.color}</div>
-              <div>{fish.taste}</div>
-              <div>{fish.calories}</div>
-              <div>{fish.protein}</div>
-              <div>{fish.totalFat}</div>
-            </div>
-          );
-        })}
-        <button className="upBtn" onClick={scrollUp}>
-          U
-        </button>
-        <button className="downBtn" onClick={scrollDown}>
-          D
-        </button>
+        {fishData.map((fish, i) => (
+          <div className="fishCard" key={i}>
+            <img
+              src={fish.imgUrl}
+              alt={fish.speciesName}
+              width="280"
+              height="180"
+            />
+            <div className="fishCard-name">{fish.speciesName}</div>
+            <div>{fish?.altName}</div>
+            <div>{fish?.color}</div>
+            <div>{fish?.taste}</div>
+            <div>{fish?.calories}</div>
+            <div>{fish?.protein}</div>
+            <div>{fish?.totalFat}</div>
+          </div>
+        ))}
       </>
     );
   }
